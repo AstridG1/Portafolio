@@ -1,0 +1,33 @@
+﻿ORG 100        / Inicio del programa en la dirección 100
+INPUT          / Pide el salario diario
+STORE Salario  / Guarda el salario en la variable Salario
+
+INPUT          / Pide la cantidad de días trabajados
+STORE Dias     / Guarda los días en la variable Dias
+
+LOAD Zero      / Inicializa el acumulador con 0 para el total
+STORE Total    / Total = 0 (el acumulador se usará para sumar repetidamente)
+
+LOOP, LOAD Dias      / Cargar la cantidad de días trabajados
+SKIPCOND 800         / Si Dias == 0, sal del bucle (ya multiplicamos)
+JUMP Salir           / Saltar si la condición de salida se cumple
+
+SUBT Uno             / Restar 1
+STORE Dias           / Actualizar la cantidad de días restantes
+
+LOAD Total           / Cargar el valor actual de Total
+ADD Salario          / Sumar el salario diario al Total
+STORE Total          / Guardar el nuevo valor de Total
+
+JUMP LOOP            / Repetir el proceso
+
+Salir, LOAD Total    / Cargar el resultado final
+OUTPUT               / Mostrar el salario total
+HALT                 / Detener el programa
+
+/ Declaración de variables
+Salario, DEC 0       / Variable para el salario diario
+Dias, DEC 0          / Variable para los días trabajados
+Total, DEC 0         / Variable para el salario total
+Uno, DEC 1           / Constante 1 para restar en el bucle
+Zero, DEC 0          / Constante 0 para inicializar el total
